@@ -83,80 +83,73 @@ class Home extends HookWidget {
                 ),
                 padding: const EdgeInsets.all(8),
                 constraints: BoxConstraints(maxWidth: 450),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Form(
-                      key: formKey,
-                      autovalidateMode: AutovalidateMode.always,
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            validator: (_) =>
-                                _.isNotEmpty ? null : 'Please enter your name',
-                            controller: name,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Name',
-                              icon: Icon(Icons.text_fields),
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          TextFormField(
-                            validator: (_) => EmailValidator.validate(_)
-                                ? null
-                                : 'Please enter a valid email',
-                            controller: email,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Email',
-                              icon: Icon(Icons.email),
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          SizedBox(
-                            height: 150,
-                            child: Flexible(
-                              child: TextFormField(
-                                validator: (_) => _.isNotEmpty
-                                    ? null
-                                    : 'Please enter message',
-                                controller: message,
-                                expands: true,
-                                minLines: null,
-                                maxLines: null,
-                                textAlignVertical: TextAlignVertical.top,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Message',
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                        ],
+                child: Form(
+                  key: formKey,
+                  autovalidateMode: AutovalidateMode.always,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextFormField(
+                        validator: (_) =>
+                            _.isNotEmpty ? null : 'Please enter your name',
+                        controller: name,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Name',
+                          icon: Icon(Icons.text_fields),
+                        ),
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (formKey.currentState.validate()) {
-                          Toast.show('Your message has been sent.', context);
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text('Submit'),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        validator: (_) => EmailValidator.validate(_)
+                            ? null
+                            : 'Please enter a valid email',
+                        controller: email,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Email',
+                          icon: Icon(Icons.email),
+                        ),
                       ),
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        height: 150,
+                        child: TextFormField(
+                          validator: (_) =>
+                              _.isNotEmpty ? null : 'Please enter message',
+                          controller: message,
+                          expands: true,
+                          minLines: null,
+                          maxLines: null,
+                          textAlignVertical: TextAlignVertical.top,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Message',
                           ),
                         ),
                       ),
-                    )
-                  ],
+                      const SizedBox(height: 8),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (formKey.currentState.validate()) {
+                            Toast.show('Your message has been sent.', context);
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Text('Submit'),
+                        ),
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 60),
